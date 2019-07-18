@@ -15,7 +15,7 @@ public class TesteTodasAsMovimentacoesDasContas {
 		EntityManager em = new JPAUtil().getEntityManager();
 		em.getTransaction().begin();
 
-		String jqpl = "select c from Conta c join fetch c.movimentacoes";
+		String jqpl = "select distinct c from Conta c left join fetch c.movimentacoes";
 		
 		Query query = em.createQuery(jqpl);
 		
