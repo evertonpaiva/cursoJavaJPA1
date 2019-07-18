@@ -15,23 +15,28 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.NamedQuery;
+
 @Entity
+@NamedQuery(query = "select avg(m.valor) from Movimentacao m where m.conta = :pConta" + 
+		" and m.tipo = :pTipo group by day(m.data), month(m.data), year(m.data)", 
+		name = "MediasPorDiaETipo")
 public class Movimentacao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private BigDecimal valor;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoMovimentacao tipo;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar data;
-	
+
 	private String descricao;
-	
+
 	public Conta getConta() {
 		return conta;
 	}
@@ -42,7 +47,7 @@ public class Movimentacao {
 
 	@ManyToOne
 	private Conta conta;
-	
+
 	@ManyToMany
 	private List<Categoria> categoria;
 
@@ -88,6 +93,6 @@ public class Movimentacao {
 
 	public void setCategorias(List<Categoria> categoria) {
 		this.categoria = categoria;
-	}	
-	
+	}
+
 }
