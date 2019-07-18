@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,7 @@ public class Movimentacao {
 	
 	private BigDecimal valor;
 	
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private TipoMovimentacao tipo;
 	
 	@Temporal(TemporalType.TIMESTAMP)
