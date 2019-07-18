@@ -2,4 +2,4 @@
 
 # DB
 !db/mysql/.gitkeep
-#db/mysql/*
+db/mysql/*
